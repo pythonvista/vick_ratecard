@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Emeter - Web Development Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .card-period {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .additional-features {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .additional-features h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .feature-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .feature-price {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .popular {
+            position: relative;
+        }
+
+        .popular::after {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8em;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-section {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .contact-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+
+        .contact-item strong {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .enterprise-note {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .enterprise-note h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .enterprise-note p {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Web Development Services</h1>
+            <p>Professional Frontend Solutions by Victor Emeter</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Landing Page Package -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <h3 class="card-title">Landing Pages</h3>
+                    <div class="card-price">₦180k - 200k</div>
+                    <div class="card-period">Starting Price</div>
+                </div>
+                
+                <ul class="features-list">
+                    <li>Responsive Design</li>
+                    <li>Mobile-First Approach</li>
+                    <li>SEO Optimized</li>
+                    <li>Fast Loading Speed</li>
+                    <li>Contact Form Integration</li>
+                    <li>Social Media Integration</li>
+                    <li>Basic Analytics Setup</li>
+                </ul>
+
+                <div class="additional-features">
+                    <h4>Additional Features:</h4>
+                    <div class="feature-item">
+                        <span>Custom Animations</span>
+                        <span class="feature-price">+₦25k</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Advanced SEO Package</span>
+                        <span class="feature-price">+₦30k</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Multi-language Support</span>
+                        <span class="feature-price">+₦40k</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>CMS Integration</span>
+                        <span class="feature-price">+₦35k</span>
+                    </div>
+                </div>
+
+                <button class="cta-button">Get Started</button>
+            </div>
+
+            <!-- E-commerce Package -->
+            <div class="pricing-card popular">
+                <div class="card-header">
+                    <h3 class="card-title">E-commerce Solutions</h3>
+                    <div class="card-price">₦250k - 500k</div>
+                    <div class="card-period">Full Package</div>
+                </div>
+                
+                <ul class="features-list">
+                    <li>Product Catalog Management</li>
+                    <li>Shopping Cart Functionality</li>
+                    <li>Payment Gateway Integration</li>
+                    <li>User Authentication</li>
+                    <li>Order Management System</li>
+                    <li>Inventory Tracking</li>
+                    <li>Admin Dashboard</li>
+                    <li>Mobile Responsive</li>
+                </ul>
+
+                <div class="additional-features">
+                    <h4>Additional Features:</h4>
+                    <div class="feature-item">
+                        <span>Advanced Reporting</span>
+                        <span class="feature-price">+₦50k</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Multi-vendor Support</span>
+                        <span class="feature-price">+₦80k</span>
+                    </div>
+                    <div class="feature-item">
+                        <span>Email Marketing Integration</span>
+                        <span class="feature-price">+₦35k</span>
+                    </div>
